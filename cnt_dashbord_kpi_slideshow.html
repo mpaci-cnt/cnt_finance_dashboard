@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard KPI - Slideshow Power BI</title>
+    <style>
+        html {
+            background: #EDE8FF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #EDE8FF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide.active {
+            display: block;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: transparent;
+        }
+
+        .placeholder-image {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .placeholder-text {
+            font-size: 4rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 30px 20px 20px;
+            text-align: center;
+        }
+
+        .slide-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .slide-description {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        .navigation {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            font-size: 2rem;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .navigation:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        .indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: white;
+            transform: scale(1.3);
+        }
+
+        .controls-info {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            z-index: 10;
+        }
+
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background: #4CAF50;
+            transition: width 0.1s linear;
+            z-index: 10;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(1.05); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .slide-title {
+                font-size: 1.5rem;
+            }
+            
+            .slide-description {
+                font-size: 1rem;
+            }
+            
+            .navigation {
+                font-size: 1.5rem;
+                padding: 10px 15px;
+            }
+            
+            .controls-info {
+                font-size: 0.8rem;
+                padding: 8px 12px;
+            }
+
+            .placeholder-text {
+                font-size: 2.5rem;
+                padding: 15px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <!-- Slide 1 - MAIN -->
+        <div class="slide active">
+            <iframe src="https://app.powerbi.com/reportEmbed?reportId=30f5035a-7997-4487-8d2f-6c804c27448f&autoAuth=true&ctid=91b02abd-daec-432a-8ee4-b5137910aca6&pageName=62a0ce2fb393fbbd513b&navContentPaneEnabled=false&filterPaneEnabled=false" 
+                    frameborder="0" 
+                    allowFullScreen="true">
+            </iframe>
+        </div>
+
+        <!-- Slide 2 - NPS -->
+        <div class="slide">
+            <iframe src="https://app.powerbi.com/reportEmbed?reportId=30f5035a-7997-4487-8d2f-6c804c27448f&autoAuth=true&ctid=91b02abd-daec-432a-8ee4-b5137910aca6&pageName=19bbe341c30035759186&navContentPaneEnabled=false&filterPaneEnabled=false" 
+                    frameborder="0" 
+                    allowFullScreen="true">
+            </iframe>
+        </div>
+
+        <!-- Slide 3 - QUALITA' -->
+        <div class="slide">
+            <iframe src="https://app.powerbi.com/reportEmbed?reportId=30f5035a-7997-4487-8d2f-6c804c27448f&autoAuth=true&ctid=91b02abd-daec-432a-8ee4-b5137910aca6&pageName=2b124723f9c47411516d&navContentPaneEnabled=false&filterPaneEnabled=false" 
+                    frameborder="0" 
+                    allowFullScreen="true">
+            </iframe>
+        </div>
+
+        <!-- Slide 4 - PROGETTI -->
+        <div class="slide">
+            <iframe src="https://app.powerbi.com/reportEmbed?reportId=30f5035a-7997-4487-8d2f-6c804c27448f&autoAuth=true&ctid=91b02abd-daec-432a-8ee4-b5137910aca6&pageName=8188fc9b84676d57b1d1&navContentPaneEnabled=false&filterPaneEnabled=false" 
+                    frameborder="0" 
+                    allowFullScreen="true">
+            </iframe>
+        </div>
+
+        <!-- Slide 5 - GPTW -->
+        <div class="slide">
+            <iframe src="https://app.powerbi.com/reportEmbed?reportId=30f5035a-7997-4487-8d2f-6c804c27448f&autoAuth=true&ctid=91b02abd-daec-432a-8ee4-b5137910aca6&pageName=56e585db50bc682f4ce9&navContentPaneEnabled=false&filterPaneEnabled=false" 
+                    frameborder="0" 
+                    allowFullScreen="true">
+            </iframe>
+        </div>
+
+        <!-- Slide 6 - MERCATO -->
+        <div class="slide">
+            <iframe src="https://app.powerbi.com/reportEmbed?reportId=30f5035a-7997-4487-8d2f-6c804c27448f&autoAuth=true&ctid=91b02abd-daec-432a-8ee4-b5137910aca6&pageName=ac81c3f11fb35b11b60d&navContentPaneEnabled=false&filterPaneEnabled=false" 
+                    frameborder="0" 
+                    allowFullScreen="true">
+            </iframe>
+        </div>
+
+        <!-- Controlli di navigazione -->
+        <button class="navigation prev" onclick="changeSlide(-1)">‹</button>
+        <button class="navigation next" onclick="changeSlide(1)">›</button>
+
+        <!-- Indicatori -->
+        <div class="indicators">
+            <span class="indicator active" onclick="goToSlide(0)"></span>
+            <span class="indicator" onclick="goToSlide(1)"></span>
+            <span class="indicator" onclick="goToSlide(2)"></span>
+            <span class="indicator" onclick="goToSlide(3)"></span>
+            <span class="indicator" onclick="goToSlide(4)"></span>
+            <span class="indicator" onclick="goToSlide(5)"></span>
+        </div>
+
+        <!-- Barra di progresso -->
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const indicators = document.querySelectorAll('.indicator');
+        const totalSlides = slides.length;
+        let autoSlideInterval;
+        let isPaused = false;
+        let progressInterval;
+        const slideInterval = 5000; // 5 secondi
+
+        // Inizializza lo slideshow
+        function initSlideshow() {
+            showSlide(currentSlide);
+            startAutoSlide();
+            startProgressBar();
+        }
+
+        // Mostra una slide specifica
+        function showSlide(index) {
+            // Nasconde tutte le slide
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+
+            // Mostra la slide corrente
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+        }
+
+        // Cambia slide (avanti o indietro)
+        function changeSlide(direction) {
+            currentSlide += direction;
+            
+            if (currentSlide >= totalSlides) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = totalSlides - 1;
+            }
+            
+            showSlide(currentSlide);
+            resetProgressBar();
+        }
+
+        // Va a una slide specifica
+        function goToSlide(index) {
+            currentSlide = index;
+            showSlide(currentSlide);
+            resetProgressBar();
+        }
+
+        // Avvia lo slideshow automatico
+        function startAutoSlide() {
+            if (!isPaused) {
+                autoSlideInterval = setInterval(() => {
+                    changeSlide(1);
+                }, slideInterval);
+            }
+        }
+
+        // Ferma lo slideshow automatico
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+
+        // Pausa/riprendi lo slideshow
+        function togglePause() {
+            isPaused = !isPaused;
+            if (isPaused) {
+                stopAutoSlide();
+                stopProgressBar();
+            } else {
+                startAutoSlide();
+                startProgressBar();
+            }
+        }
+
+        // Gestione della barra di progresso
+        function startProgressBar() {
+            let progress = 0;
+            const progressBar = document.getElementById('progressBar');
+            
+            progressInterval = setInterval(() => {
+                if (!isPaused) {
+                    progress += (100 / (slideInterval / 100));
+                    progressBar.style.width = progress + '%';
+                    
+                    if (progress >= 100) {
+                        progress = 0;
+                    }
+                }
+            }, 100);
+        }
+
+        function stopProgressBar() {
+            clearInterval(progressInterval);
+        }
+
+        function resetProgressBar() {
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = '0%';
+            stopProgressBar();
+            startProgressBar();
+        }
+
+        // Event listeners per la tastiera
+        document.addEventListener('keydown', (event) => {
+            switch(event.key) {
+                case 'ArrowLeft':
+                    event.preventDefault();
+                    changeSlide(-1);
+                    break;
+                case 'ArrowRight':
+                    event.preventDefault();
+                    changeSlide(1);
+                    break;
+                case ' ': // Barra spaziatrice
+                    event.preventDefault();
+                    togglePause();
+                    break;
+                case 'Enter':
+                    event.preventDefault();
+                    if (isPaused) {
+                        togglePause();
+                    }
+                    break;
+                case 'Escape':
+                    event.preventDefault();
+                    if (!isPaused) {
+                        togglePause();
+                    }
+                    break;
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                    event.preventDefault();
+                    const slideNumber = parseInt(event.key) - 1;
+                    if (slideNumber >= 0 && slideNumber < totalSlides) {
+                        goToSlide(slideNumber);
+                    }
+                    break;
+            }
+        });
+
+        // Event listeners per il mouse
+        document.addEventListener('click', (event) => {
+            // Se clicco sull'immagine, pausa/riprendi
+            if (event.target.tagName === 'IMG') {
+                togglePause();
+            }
+        });
+
+        // Gestione del focus per la tastiera
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.tabIndex = 0;
+            document.body.focus();
+        });
+
+        // Pausa quando si perde il focus e riprende quando si riacquista
+        window.addEventListener('blur', () => {
+            if (!isPaused) {
+                togglePause();
+            }
+        });
+
+        window.addEventListener('focus', () => {
+            document.body.focus();
+        });
+
+        // Inizializza lo slideshow quando la pagina è caricata
+        document.addEventListener('DOMContentLoaded', initSlideshow);
+    </script>
+</body>
+</html>
