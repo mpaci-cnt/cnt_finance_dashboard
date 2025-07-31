@@ -241,7 +241,15 @@
             </iframe>
         </div>
 
-        <!-- Slide 5 - GPTW -->
+        <!-- Slide 5 - PROGETTI - ADOZIONE AI -->
+        <div class="slide">
+            <iframe src="https://app.powerbi.com/reportEmbed?reportId=30f5035a-7997-4487-8d2f-6c804c27448f&autoAuth=true&ctid=91b02abd-daec-432a-8ee4-b5137910aca6&pageName=6fc4ff6a1f88850fd7f4&navContentPaneEnabled=false&filterPaneEnabled=false" 
+                    frameborder="0" 
+                    allowFullScreen="true">
+            </iframe>
+        </div>
+
+        <!-- Slide 6 - GPTW -->
         <div class="slide">
             <iframe src="https://app.powerbi.com/reportEmbed?reportId=30f5035a-7997-4487-8d2f-6c804c27448f&autoAuth=true&ctid=91b02abd-daec-432a-8ee4-b5137910aca6&pageName=56e585db50bc682f4ce9&navContentPaneEnabled=false&filterPaneEnabled=false" 
                     frameborder="0" 
@@ -249,7 +257,7 @@
             </iframe>
         </div>
 
-        <!-- Slide 6 - MERCATO -->
+        <!-- Slide 7 - MERCATO -->
         <div class="slide">
             <iframe src="https://app.powerbi.com/reportEmbed?reportId=30f5035a-7997-4487-8d2f-6c804c27448f&autoAuth=true&ctid=91b02abd-daec-432a-8ee4-b5137910aca6&pageName=ac81c3f11fb35b11b60d&navContentPaneEnabled=false&filterPaneEnabled=false" 
                     frameborder="0" 
@@ -269,6 +277,7 @@
             <span class="indicator" onclick="goToSlide(3)"></span>
             <span class="indicator" onclick="goToSlide(4)"></span>
             <span class="indicator" onclick="goToSlide(5)"></span>
+            <span class="indicator" onclick="goToSlide(6)"></span>
         </div>
 
         <!-- Barra di progresso -->
@@ -411,6 +420,7 @@
                 case '4':
                 case '5':
                 case '6':
+                case '7':
                     event.preventDefault();
                     const slideNumber = parseInt(event.key) - 1;
                     if (slideNumber >= 0 && slideNumber < totalSlides) {
